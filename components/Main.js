@@ -7,7 +7,9 @@ export function Main(props) {
   console.log(props);
   return (
     <Headline>
-      <code className="font-mono font-bold">pages/{props.pages}.js </code>
+      <code className="font-mono font-bold text-blue-400">
+        pages/{props.pages}.js{" "}
+      </code>
     </Headline>
   );
 }
