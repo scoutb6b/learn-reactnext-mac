@@ -4,7 +4,6 @@ import { Headline } from "src/components/Headline";
 const inter = Inter({ subsets: ["latin"] });
 
 export function Main(props) {
-  console.log(props);
   return (
     <Headline>
       <code className="font-mono font-bold text-blue-400">
