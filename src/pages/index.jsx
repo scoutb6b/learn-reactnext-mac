@@ -3,25 +3,21 @@ import { Inter } from "next/font/google";
 import { Links } from "src/components/Links";
 import { Main } from "src/components/Main";
 import { Header } from "src/components/Header";
-import { useCallback, useEffect } from "react";
-import Link from "next/link";
+import { useEffect, useState } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-  const foo = 1;
+  const [count, setCount] = useState(0);
 
-  const handeleClick = useCallback((e) => {
-    console.log(e.target.href);
-    e.preventDefault();
-    alert(foo);
-  }, []);
+  const handeleClick = (e) => {
+    setCount((count) => count + 1);
+    setCount((count) => count + 1);
+  };
+
   useEffect(() => {
-    console.log("マウント時");
     document.body.style.backgroundColor = "lightblue";
-
     return () => {
-      console.log("アンマウント時");
       document.body.style.backgroundColor = "";
     };
   }, []);
@@ -32,9 +28,8 @@ export default function Home() {
     >
       <Header />
       <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <Link href="/about" onClick={handeleClick}>
-          ボタン
-        </Link>
+        <h1> {count} </h1>
+        <button onClick={handeleClick}>ボタン</button>
         <Main pages="index!!" />
         <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
           <a
