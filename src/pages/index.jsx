@@ -9,12 +9,27 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   const [count, setCount] = useState(0);
+  const [text, setText] = useState("");
+  const [isShow, setIsShow] = useState(true);
 
   const handeleClick = useCallback(() => {
     if (count < 10) {
       setCount((count) => count + 1);
     }
   }, [count]);
+
+  const handleChange = useCallback((e) => {
+    if (e.target.value.length > 5) {
+      alert("5文字まで");
+      return;
+    }
+    setText(e.target.value.trim());
+  }, []);
+
+  const handleDisplay = useCallback(() => {
+    // isShowがtrueならflase,falseならtrueを返している
+    setIsShow((isShow) => !isShow);
+  }, []);
 
   useEffect(() => {
     document.body.style.backgroundColor = "lightblue";
@@ -29,8 +44,12 @@ export default function Home() {
     >
       <Header />
       <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <h1> {count} </h1>
+        {isShow ? <h1> {count} </h1> : null}
         <button onClick={handeleClick}>ボタン</button>
+        <button onClick={handleDisplay}>
+          {isShow ? "非表示にする" : "表示する"}
+        </button>
+        <input type="text" value={text} onChange={handleChange} />
         <Main pages="index!!" />
         <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
           <a
