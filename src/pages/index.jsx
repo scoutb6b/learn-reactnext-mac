@@ -3,51 +3,16 @@ import { Inter } from "next/font/google";
 import { Links } from "src/components/Links";
 import { Main } from "src/components/Main";
 import { Header } from "src/components/Header";
-import { useCallback, useEffect, useState } from "react";
+import { useCounter } from "@/src/hooks/useCounter";
+import { useInputArray } from "@/src/hooks/useInputArray";
+import { useBgColor } from "@/src/hooks/useBgColor";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-  const [count, setCount] = useState(0);
-  const [text, setText] = useState("");
-  const [isShow, setIsShow] = useState(true);
-  const [array, setArrray] = useState([]);
-
-  const handeleClick = useCallback(() => {
-    if (count < 10) {
-      setCount((prevcount) => prevcount + 1);
-    }
-  }, [count]);
-
-  const handleChange = useCallback((e) => {
-    if (e.target.value.length > 5) {
-      alert("5文字まで");
-      return;
-    }
-    setText(e.target.value.trim());
-  }, []);
-
-  const handleDisplay = useCallback(() => {
-    // isShowがtrueならflase,falseならtrueを返している
-    setIsShow((previsShow) => !previsShow);
-  }, []);
-
-  const handleAdd = useCallback(() => {
-    setArrray((prevArray) => {
-      if (prevArray.some((item) => item === text)) {
-        alert("同じ要素が既に存在しています");
-        return prevArray;
-      }
-      return [...prevArray, text];
-    });
-  }, [text]);
-
-  useEffect(() => {
-    document.body.style.backgroundColor = "lightblue";
-    return () => {
-      document.body.style.backgroundColor = "";
-    };
-  }, []);
+  const { count, isShow, handeleClick, handleDisplay } = useCounter();
+  const { text, array, handleChange, handleAdd } = useInputArray();
+  useBgColor();
 
   return (
     <main
@@ -60,6 +25,7 @@ export default function Home() {
         <button onClick={handleDisplay}>
           {isShow ? "非表示にする" : "表示する"}
         </button>
+
         <input type="text" value={text} onChange={handleChange} />
         <button onClick={handleAdd}>追加</button>
         <ul>
@@ -67,6 +33,7 @@ export default function Home() {
             return <li key={item}>{item}</li>;
           })}
         </ul>
+
         <Main pages="index!!" />
         <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
           <a
