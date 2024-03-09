@@ -3,16 +3,21 @@ import { Inter } from "next/font/google";
 import { Links } from "src/components/Links";
 import { Main } from "src/components/Main";
 import { Header } from "src/components/Header";
-import { useCounter } from "@/src/hooks/useCounter";
-import { useInputArray } from "@/src/hooks/useInputArray";
-import { useBgColor } from "@/src/hooks/useBgColor";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Home() {
-  const { count, isShow, handeleClick, handleDisplay } = useCounter();
-  const { text, array, handleChange, handleAdd } = useInputArray();
-  useBgColor();
+export default function Home(props) {
+  console.log(props);
+  const {
+    count,
+    isShow,
+    handeleClick,
+    handleDisplay,
+    text,
+    array,
+    handleChange,
+    handleAdd,
+  } = props;
 
   return (
     <main
