@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { Inter } from "next/font/google";
-import { Links } from "src/components/Links";
 import { Main } from "src/components/Main";
 import { Header } from "src/components/Header";
 
@@ -24,7 +23,7 @@ export default function Home(props) {
       className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
     >
       <Header />
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
+      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm">
         {isShow ? <h1> {count} </h1> : null}
         <button onClick={handeleClick}>ボタン</button>
         <button onClick={handleDisplay}>
@@ -70,7 +69,6 @@ export default function Home(props) {
           priority
         />
       </div>
-      <Links />
     </main>
   );
 }
