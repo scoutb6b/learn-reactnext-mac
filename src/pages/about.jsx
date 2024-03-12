@@ -6,8 +6,8 @@ import { Header } from "src/components/Header";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function About({
-  count,
   isShow,
+  doubleCount,
   handeleClick,
   handleDisplay,
   text,
@@ -21,7 +21,7 @@ export default function About({
     >
       <Header />
       <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm ">
-        {isShow ? <h1> {count} </h1> : null}
+        {isShow ? <h1> {doubleCount} </h1> : null}
         <button onClick={handeleClick}>ボタン</button>
         <button onClick={handleDisplay}>
           {isShow ? "非表示にする" : "表示する"}
