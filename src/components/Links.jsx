@@ -1,12 +1,11 @@
 import { Inter } from "next/font/google";
 const inter = Inter({ subsets: ["latin"] });
 
-export function Links({ items, handleReduce }) {
-  console.log(items);
+export const Links = (props) => {
   return (
     <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-      <button onClick={handleReduce}>減らす</button>
-      {items.map((item) => {
+      <button onClick={props.handleReduce}>減らす</button>
+      {props.items.map((item) => {
         return (
           <a
             href={item.href}
@@ -29,4 +28,4 @@ export function Links({ items, handleReduce }) {
       })}
     </div>
   );
-}
+};
